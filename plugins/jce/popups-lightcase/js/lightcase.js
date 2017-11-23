@@ -94,6 +94,8 @@
             
             // cleanup
             this.remove(n);
+            
+            var values = ["lightcase"];
 
             var collection  = $('#lightcase_collection').val();
             var slideshow   = $('#lightcase_slideshow').is(':checked');
@@ -103,36 +105,22 @@
             if (title) {
                 ed.dom.setAttrib(n, 'title', ed.dom.encode(title));
             }
-            // set size
-            if (width && height) {
-                ed.dom.setAttrib(n, 'data-rokbox-size',  width + $('#rokbox_width_unit').val() + ' ' + height + $('#rokbox_height_unit').val());
-            }
-            // set thumbnail option
-            if (thubmnail) {
-                ed.dom.setAttrib(n, 'data-rokbox-generate-thumbnail', 1);
-            }
-            // set album
-            if (album) {
-                ed.dom.setAttrib(n, 'data-rokbox-album', album);
-            }
             
-            // set element
-            if (element) {
-                ed.dom.setAttrib(n, 'data-rokbox-element', element);
+            // set collection
+            if (collection) {
+                values.push(collection);
+            }
+
+            // set slideshow option
+            if (slideshow) {
+                values.push('slideshow');
             }
             
             // set marker
-            ed.dom.setAttrib(n, 'data-rokbox', 1);
+            ed.dom.setAttrib(n, 'data-rel', values.join(":"));
 
             // Set target
             ed.dom.setAttrib(n, 'target', '_blank');
-
-            var title = ed.dom.getAttrib(n, 'title');
-
-            if (!title && caption) {
-                // set link title
-                ed.dom.setAttrib(n, 'title', caption.split('::')[0]);
-            }
         },
         /**
          * Function to call when popup extension selected
