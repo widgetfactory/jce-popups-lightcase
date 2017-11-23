@@ -23,7 +23,7 @@
     <media></media>
     <plugins>link,imgmanager_ext,mediamanager</plugins>
     <languages folder="administrator/language/en-GB">
-        <language tag="en-GB">en-GB.plg_jce_popups_lightcase.ini</language>
-        <language tag="en-GB">en-GB.plg_jce_popups_lightcase.sys.ini</language>
+        <language tag="en-GB">en-GB.plg_jce_popups-lightcase.ini</language>
+        <language tag="en-GB">en-GB.plg_jce_popups-lightcase.sys.ini</language>
     </languages>
 </extension>
