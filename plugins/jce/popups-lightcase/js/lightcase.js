@@ -19,7 +19,7 @@
         check: function(n) {
             var r = n.getAttribute('data-rel');
             
-            return r.indexOf("lightcase") === 0;
+            return r && r.indexOf("lightcase") === 0;
         },
         /**
          * Clean a link of popup attributes
