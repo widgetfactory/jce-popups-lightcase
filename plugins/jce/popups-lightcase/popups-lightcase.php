@@ -33,11 +33,7 @@ class WFPopupsExtension_Lightcase extends JObject {
     public function isEnabled() {
         $wf = WFEditorPlugin::getInstance();
 
-        if (JPluginHelper::isEnabled('system', 'lightcase') && $wf->getParam('popups.lightcase.enable', 1) == 1) {
-            return true;
-        }
-
-        return false;
+        return (int) $wf->getParam('popups.lightcase.enable', 1) === 1;
     }
 }
 
