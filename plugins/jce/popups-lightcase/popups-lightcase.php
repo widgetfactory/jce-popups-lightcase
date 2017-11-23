@@ -36,5 +36,3 @@ class WFPopupsExtension_Lightcase extends JObject {
         return (int) $wf->getParam('popups.lightcase.enable', 1) === 1;
     }
 }
-
-?>
