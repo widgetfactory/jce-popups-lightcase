@@ -77,7 +77,41 @@
                     $k.val(v);
                 }
             });
-            
+
+            var options = ed.dom.getAttrib(n, 'data-lc-options');
+
+            if (options) {
+                options = options.replace(/[']+/g, '"');
+
+                var json = {};
+
+                try {
+                    json = JSON.parse(options);
+                } catch(e) {}
+
+                var x = 0;
+
+                $.each(json, function(k, v) {
+                    if (v !== "") {
+                        try {
+                            v = decodeURIComponent(v);
+                        } catch (e) {}
+        
+                        var n = $('.uk-repeatable', '#lightcase_options').eq(0);
+        
+                        if (x > 0) {
+                            $(n).clone(true).appendTo($(n).parent());
+                        }
+        
+                        var elements = $('.uk-repeatable', '#lightcase_options').eq(x).find('input, select');
+        
+                        $(elements).eq(0).val(k);
+                        $(elements).eq(1).val(v);
+                    }
+
+                    x++;
+                });
+            }
 
             $.extend(args, {
                 src: ed.dom.getAttrib(n, 'href')
@@ -118,6 +152,29 @@
             
             // set marker
             ed.dom.setAttrib(n, 'data-rel', values.join(":"));
+
+            var data = {};
+
+            $('.uk-repeatable', '#lightcase_options').each(function() {
+                var k = $('input[name^="lightcase_options_name"]', this).val();
+                var v = $('input[name^="lightcase_options_value"]', this).val();
+    
+                if (k !== '' && v !== '') {
+                    
+                    if (!/\D/.test(v)) {
+                        v = parseInt(v);
+                    }
+                    
+                    data[k] = v;
+                }
+            });
+
+            var json = JSON.stringify(data);
+
+            if (json) {
+                json = json.replace(/["]+/g, "'");
+                ed.dom.setAttrib(n, 'data-lc-options', json);
+            }
 
             // Set target
             ed.dom.setAttrib(n, 'target', '_blank');
